@@ -56,7 +56,7 @@ class List{
     public:
         typedef Node* Position;
 
-        class Exception : public std::exception{
+        class Exception : public std::exception {
                 private:
                     std::string msg;
                 public:
@@ -69,6 +69,7 @@ class List{
                     virtual const char* what() const throw(){
                         return msg.c_str();
                     }
+        };
 
         List();
         List(const List<T>&);
@@ -104,7 +105,7 @@ template <class T>
 List<T>::Node::Node() : dataPtr(nullptr), prev(nullptr), next(nullptr) {}
 
 template <class T>
-List<T>;;Node::Node(const T& e) : dataPtr(new T(e)), prev(nullptr), next(nullptr){
+List<T>::Node::Node(const T& e) : dataPtr(new T(e)), prev(nullptr), next(nullptr){
     if(dataPtr == nullptr){
         throw Exception( "memoria insuficiente, creando nodo" );
     }
@@ -182,7 +183,7 @@ void List<T>::copyAll(const List<T>& l){
             throw Exception(ex.what());
         }
 
-        newNode->setPrev(header->getPrev()):
+        newNode->setPrev(header->getPrev());
         newNode->setNext(header);
 
         header->getPrev()->setNext(newNode);
@@ -275,7 +276,7 @@ void List<T>::deleteData(Node* p){
 }
 
 template <class T>
-typename List<T>::Node* List<T>::getfirstPos() const{
+typename List<T>::Node* List<T>::getFirstPos() const{
     if(isEmpty()){
         return nullptr;
     }
@@ -371,6 +372,9 @@ List<T>& List<T>::operator = (const List<T>& l){
 
     return *this;
 }
+
+#endif // LIST_H_INCLUDED
+
 
 
 
